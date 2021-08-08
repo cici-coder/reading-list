@@ -25,9 +25,12 @@
     content="Today I Read, 社区驱动的高质量聚合阅读列表，提供高质量，及时，新潮，有趣的科技新闻， 编程技术，开源项目等， 打破 AI 推荐算法的信息茧房！">
   <meta property="twitter:image" content="https://tir.cool/share-img.png">
 
-  <!-- favicon -->
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📖</text></svg>">
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/marked/marked.min.js" as="script">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- title -->
   <title>TIR: Today I Read ｜ 社区驱动的高质量聚合阅读列表</title>
@@ -49,9 +52,8 @@
       </span>
     </div>
     <div class="menu-right">
-      <a class="menu-link" id="community-link" href="https://github.com/jwenjian/reading-list/discussions"
-        target="_blank">🧑‍🤝‍🧑社区</a>
-      <a class="menu-link" id="about-link" href="about.html" target="_blank">💡关于</a>
+      <a class="menu-link" id="travalling-link" href="https://travellings.link" rel="noopenner" title="开往-友链接力" target="_blank">🚇开往</a>
+      <a class="menu-link" id="about-link" href="about.html">💡关于</a>
     </div>
   </div>
   <img src="tir_logo.png" alt="TIR Logo" style="height: 10vh;">
@@ -62,14 +64,13 @@
         <% today.forEach(function(item_in_today) { %>
           <li>
             <div class="item">
-              <a class="title">
+              <a class="title" href="https://tir.cool/detail/<%= item_in_today.number %>.html">
                 <%= item_in_today.title %>
               </a>
             </div>
             <div class="item-btn">
               <div class="btns">
-                <a href="<%= item_in_today.body %>" target="_blank">🔗原文</a>
-                <a href="<%= item_in_today.html_url %>" target="_blank">💬讨论</a>
+                <a href="<%= item_in_today.user.html_url %>" target="_blank">@<%= item_in_today.user.login %></a>
               </div>
               <div>
                 <span class="timeago" datetime="<%= item_in_today.created_at %>"></span>
@@ -84,14 +85,13 @@
         <% recent.forEach(function(item_in_recent) { %>
           <li>
             <div class="item">
-              <a class="title">
+              <a class="title" href="https://tir.cool/detail/<%= item_in_recent.number %>.html">
                 <%= item_in_recent.title %>
               </a>
             </div>
             <div class="item-btn">
               <div class="btns">
-                <a href="<%= item_in_recent.body %>" target="_blank">🔗原文</a>
-                <a href="<%= item_in_recent.html_url %>" target="_blank">💬讨论</a>
+                <a href="<%= item_in_recent.user.html_url %>" target="_blank">@<%= item_in_recent.user.login %></a>
               </div>
               <div>
                 <span class="timeago" datetime="<%= item_in_recent.created_at %>"></span>
@@ -110,15 +110,8 @@
       </span></p>
     <p>Made with 💖 by <a href="https://github.com/jwenjian" target="_blank">@jwenjian</a> </p>
   </div>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8c19077fa149b5af141fef6601e5b0"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 <script src="page.js"></script>
-<script>
-  window.onload = function () {
-    // register click event to hanlde share
-    document.querySelectorAll('a.title').forEach(el => {
-      el.onclick = handleShare
-    })
-  }
-</script>
 
 </html>
